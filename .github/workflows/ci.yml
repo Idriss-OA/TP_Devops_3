@@ -25,11 +25,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install fastapi uvicorn pytest httpx pytest-cov pylint
 
-      - name: Executer les tests
-        run: pytest -v
+      - name: Executer les tests et generer JUnit XML
+        run: pytest -v --junitxml=report.xml
 
       - name: Calculer la couverture
         run: pytest --cov=main --cov-report=term --cov-fail-under=90
 
       - name: Verifier la qualite du code
         run: pylint main.py test_main.py
+
+      - name: Sauvegarder le rapport JUnit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-junit
+          path: report.xml
