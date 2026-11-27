@@ -1,2 +1,14 @@
 __pycache__/
 *.pyc
+
+# Environnement virtuel
+.venv/
+
+# Fichiers Python temporaires
+__pycache__/
+*.py[cod]
+
+# Tests et couverture
+.pytest_cache/
+.coverage
+htmlcov/
